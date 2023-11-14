@@ -1,6 +1,5 @@
 package adapters;
 
-//import androidx.recyclerview.widget.ListAdapter;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
 
 import com.bgaray.fragmentsalbum.R;
 
@@ -58,7 +58,9 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder> 
         }
 
         public void setAlbumData(Album album) {
-            imgCover.setImageResource(album.getCoverResourceId());
+            // Usamos Glide para traer imágenes de internet y devolverlas a imgCover
+            Glide.with(context).load(album.getImageUrl()).into(imgCover);
+
             tvTitle.setText(album.getTitle());
             tvArtist.setText(album.getArtist());
             tcGenre.setText(album.getGenre());
